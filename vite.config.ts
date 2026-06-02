@@ -37,7 +37,7 @@ export default defineConfig(({ mode }) => {
                 dts: 'auto-imports.d.ts',
                 resolvers: [
                     ElementPlusResolver({
-                        importStyle: 'css',
+                        importStyle: 'sass',
                     }),
                 ],
             }),
@@ -45,7 +45,7 @@ export default defineConfig(({ mode }) => {
                 dts: 'components.d.ts',
                 resolvers: [
                     ElementPlusResolver({
-                        importStyle: 'css',
+                        importStyle: 'sass',
                     }),
                 ],
             }),
@@ -76,6 +76,13 @@ export default defineConfig(({ mode }) => {
                     }
 
                     handler(level, log);
+                },
+            },
+        },
+        css: {
+            preprocessorOptions: {
+                scss: {
+                    additionalData: `@use "@/styles/element/index.scss" as *;`,
                 },
             },
         },
