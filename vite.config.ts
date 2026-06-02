@@ -5,6 +5,9 @@ import vue from '@vitejs/plugin-vue';
 import vueJsx from '@vitejs/plugin-vue-jsx';
 import vueDevTools from 'vite-plugin-vue-devtools';
 import { visualizer } from 'rollup-plugin-visualizer';
+import AutoImport from 'unplugin-auto-import/vite';
+import Components from 'unplugin-vue-components/vite';
+import { ElementPlusResolver } from 'unplugin-vue-components/resolvers';
 
 function normalizeBase(value: string | undefined) {
     if (!value || value === '/') {
@@ -30,6 +33,22 @@ export default defineConfig(({ mode }) => {
         plugins: [
             vue(),
             vueJsx(),
+            AutoImport({
+                dts: 'auto-imports.d.ts',
+                resolvers: [
+                    ElementPlusResolver({
+                        importStyle: 'css',
+                    }),
+                ],
+            }),
+            Components({
+                dts: 'components.d.ts',
+                resolvers: [
+                    ElementPlusResolver({
+                        importStyle: 'css',
+                    }),
+                ],
+            }),
             vueDevTools(),
             shouldAnalyze &&
                 visualizer({

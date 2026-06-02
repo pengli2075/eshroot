@@ -38,6 +38,9 @@ __screenshots__/
 # Vite
 *.timestamp-*-*.mjs
 
+auto-imports.d.ts
+components.d.ts
+
 test-results/
 playwright-report/
 
