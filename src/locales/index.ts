@@ -18,3 +18,35 @@ export type AppLocale = keyof typeof messages;
 
 // 默认语言：首次进入系统或本地缓存无效时使用。
 export const defaultLocale: AppLocale = 'zh_CN';
+
+// 页面上展示的语言选项。value 必须和 messages 的 key 一致。
+export const languageOptions = [
+    { label: '简体中文', value: 'zh_CN' },
+    { label: '繁體中文', value: 'zh_TW' },
+    { label: 'English', value: 'en' },
+] as const satisfies ReadonlyArray<{
+    label: string;
+    value: AppLocale;
+}>;
+
+const localeAliases: Partial<Record<string, AppLocale>> = {
+    en_US: 'en',
+};
+
+export function normalizeLocale(locale?: string | null): AppLocale {
+    const nextLocale = locale ? (localeAliases[locale] ?? locale) : defaultLocale;
+
+    return nextLocale in messages ? (nextLocale as AppLocale) : defaultLocale;
+}
+
+export function getStoredLocale(): AppLocale {
+    if (typeof window === 'undefined') {
+        return defaultLocale;
+    }
+
+    return normalizeLocale(window.localStorage.getItem(localeStorageKey));
+}
+
+export function saveLocale(locale: AppLocale) {
+    window.localStorage.setItem(localeStorageKey, locale);
+}

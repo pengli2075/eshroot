@@ -5,9 +5,10 @@
     --panel-border: rgba(15, 23, 42, 0.08);
     --text-primary: #172033;
     --text-secondary: #5f6b84;
-    --brand-primary: #2563eb;
+    --brand-primary: #1890ff;
     --brand-deep: #163b7a;
     --brand-soft: #dbeafe;
+    --el-font-size-base: 14px;
     --shadow-soft: 0 24px 60px rgba(15, 23, 42, 0.14);
 }
 
@@ -24,12 +25,17 @@ body,
     min-height: 100%;
 }
 
+html {
+    font-size: 14px;
+}
+
 body {
     background:
         radial-gradient(circle at top left, rgba(37, 99, 235, 0.18), transparent 28%),
         radial-gradient(circle at top right, rgba(14, 165, 233, 0.12), transparent 30%),
         linear-gradient(180deg, #f8fbff 0%, var(--app-bg) 100%);
     color: var(--text-primary);
+    font-size: 14px;
     font-family: 'Avenir Next', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
     line-height: 1.5;
     text-rendering: optimizeLegibility;

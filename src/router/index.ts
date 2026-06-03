@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router';
-import { useAuthStore } from '@/pages/login/store';
+import { useAuthStore } from '@/stores/auth';
 
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
@@ -27,16 +27,20 @@ const router = createRouter({
     ],
 });
 
-router.beforeEach((to) => {
+router.beforeEach(async (to) => {
     const authStore = useAuthStore();
 
-    if (to.meta.requiresAuth && !authStore.isAuthenticated) {
-        return {
-            path: '/login',
-            query: {
-                redirect: to.fullPath,
-            },
-        };
+    if (to.meta.requiresAuth) {
+        const isAuthenticated = await authStore.ensureAuthenticated();
+
+        if (!isAuthenticated) {
+            return {
+                path: '/login',
+                query: {
+                    redirect: to.fullPath,
+                },
+            };
+        }
     }
 
     if (to.meta.guestOnly && authStore.isAuthenticated) {

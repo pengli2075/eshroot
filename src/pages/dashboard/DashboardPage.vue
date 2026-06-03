@@ -3,13 +3,13 @@
     import { useI18n } from 'vue-i18n';
     import { storeToRefs } from 'pinia';
     import { useAppStore } from '@/stores/app';
-    import { useAuthStore } from '@/pages/login/store';
+    import { useAuthStore } from '@/stores/auth';
 
     const router = useRouter();
     const { t } = useI18n();
     const appStore = useAppStore();
     const authStore = useAuthStore();
-    const { account } = storeToRefs(authStore);
+    const { currentUser } = storeToRefs(authStore);
     const { locale, languageOptions } = storeToRefs(appStore);
 
     function logout() {
@@ -49,7 +49,9 @@
 
         <section class="hero-card">
             <div>
-                <span class="status-pill">{{ account || 'admin' }}</span>
+                <span class="status-pill">
+                    {{ currentUser?.userName || currentUser?.userLoginId }}
+                </span>
                 <h2>{{ t('dashboard.summaryTitle') }}</h2>
             </div>
         </section>

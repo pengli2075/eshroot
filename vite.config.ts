@@ -89,8 +89,10 @@ export default defineConfig(({ mode }) => {
         server: {
             proxy: {
                 '/api': {
-                    target: 'http://localhost:8080',
+                    target: 'https://icem.release.labwayit.org',
                     changeOrigin: true,
+                    secure: false,
+                    cookieDomainRewrite: 'localhost',
                     rewrite: (path) => path.replace(/^\/api/, ''),
                 },
             },
