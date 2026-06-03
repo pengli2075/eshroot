@@ -3,7 +3,7 @@
     import { useI18n } from 'vue-i18n';
     import { storeToRefs } from 'pinia';
     import { useAppStore } from '@/stores/app';
-    import { useAuthStore } from '@/stores/auth';
+    import { useAuthStore } from '@/pages/login/store';
 
     const router = useRouter();
     const { t } = useI18n();
@@ -63,7 +63,7 @@
     </div>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
     .dashboard-page {
         min-height: 100vh;
         padding: 28px;

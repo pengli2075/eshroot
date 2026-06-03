@@ -5,7 +5,7 @@
     import { useI18n } from 'vue-i18n';
     import { storeToRefs } from 'pinia';
     import { useAppStore } from '@/stores/app';
-    import { useAuthStore } from '@/stores/auth';
+    import { useAuthStore } from './store';
 
     type LoginForm = {
         account: string;
@@ -147,7 +147,7 @@
     </div>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
     .login-page {
         min-height: 100vh;
         display: grid;
