@@ -1,0 +1,49 @@
+export default {
+    common: {
+        appName: 'ESH Root 學習系統',
+        switchLanguage: '切換語言',
+        chinese: '簡體中文',
+        traditionalChinese: '繁體中文',
+        english: '英文',
+        logout: '登出',
+        submit: '提交',
+        cancel: '取消',
+    },
+    login: {
+        title: '歡迎回來',
+        subtitle: '從登入頁開始學習 Vue 3、TypeScript、表單與全域國際化。',
+        accountLabel: '帳號',
+        accountPlaceholder: '請輸入帳號',
+        passwordLabel: '密碼',
+        passwordPlaceholder: '請輸入密碼',
+        rememberMe: '記住登入狀態',
+        loginButton: '登入',
+        helperTitle: '示範帳號',
+        helperText: '目前使用本地模擬登入，方便你先學習頁面結構與狀態流轉。',
+        demoAccount: '帳號：admin',
+        demoPassword: '密碼：123456',
+        requiredAccount: '請輸入帳號',
+        requiredPassword: '請輸入密碼',
+        invalidCredentials: '帳號或密碼錯誤，請使用示範帳號繼續學習。',
+        success: '登入成功，歡迎進入系統。',
+    },
+    dashboard: {
+        title: '學習控制台',
+        welcome: '你已經完成登入頁與全域 i18n 的第一步。',
+        summaryTitle: '接下來適合繼續練習的模組',
+        cards: {
+            router: {
+                title: '路由結構',
+                description: '繼續練習登入守衛、選單路由與頁面拆分。',
+            },
+            pinia: {
+                title: '狀態管理',
+                description: '把使用者資訊、選單狀態與主題切換收進 Pinia。',
+            },
+            request: {
+                title: '介面封裝',
+                description: '接入 axios，開始呼叫登入、列表與詳情介面。',
+            },
+        },
+    },
+};
