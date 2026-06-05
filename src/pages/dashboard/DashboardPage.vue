@@ -1,4 +1,5 @@
 <script setup lang="ts">
+    import { ref } from 'vue';
     import { useRouter } from 'vue-router';
     import { useI18n } from 'vue-i18n';
     import { storeToRefs } from 'pinia';
@@ -11,10 +12,17 @@
     const authStore = useAuthStore();
     const { currentUser } = storeToRefs(authStore);
     const { locale, languageOptions } = storeToRefs(appStore);
+    const loggingOut = ref(false);
 
-    function logout() {
-        authStore.logout();
-        router.push('/login');
+    async function logout() {
+        loggingOut.value = true;
+
+        try {
+            await authStore.logout();
+            router.push('/login');
+        } finally {
+            loggingOut.value = false;
+        }
     }
 
     const learningCards = [{ key: 'router' }, { key: 'pinia' }, { key: 'request' }] as const;
@@ -43,7 +51,9 @@
                         :value="item.value"
                     />
                 </el-select>
-                <el-button plain size="large" @click="logout">{{ t('common.logout') }}</el-button>
+                <el-button plain :loading="loggingOut" size="large" @click="logout">
+                    {{ t('common.logout') }}
+                </el-button>
             </div>
         </header>
 

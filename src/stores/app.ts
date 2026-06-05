@@ -1,7 +1,7 @@
 import { computed } from 'vue';
 import { defineStore } from 'pinia';
+import { setSessionLocale } from '@/api/system';
 import { i18n } from '@/i18n';
-import { setSessionLocale } from '@/api/locale';
 import {
     languageOptions as localeLanguageOptions,
     normalizeLocale,

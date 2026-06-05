@@ -1,14 +1,13 @@
 import { computed, ref } from 'vue';
 import { defineStore } from 'pinia';
-import { normalizeLocale } from '@/locales';
 import {
     getCurrentUserInfo,
-    getLoginPageInfo,
     loginByPassword,
+    logoutCurrentUser,
     type CurrentUser,
-    type LoginPageInfo,
-    type LoginPageInfoResponse,
-} from '@/pages/login/api';
+} from '@/api/auth';
+import { getLoginPageInfo, type LoginPageInfo, type LoginPageInfoResponse } from '@/api/system';
+import { normalizeLocale } from '@/locales';
 
 const sessionCurrentUserKey = 'eshroot-current-user';
 const demoAccount = 'admin';
@@ -133,8 +132,13 @@ export const useAuthStore = defineStore('auth', () => {
         window.sessionStorage.removeItem(sessionCurrentUserKey);
     }
 
-    function logout() {
-        clearSession();
+    async function logout() {
+        try {
+            await logoutCurrentUser();
+        } finally {
+            window.sessionStorage.removeItem('singleSignOnType');
+            clearSession();
+        }
     }
 
     return {
